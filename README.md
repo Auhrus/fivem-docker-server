@@ -1,26 +1,26 @@
 # FiveM Docker Server
 
-This image provides a FiveM/txAdmin server. After the first start it downloads the necessary files from the Steam servers. If there is an update to the server files, simply recreate the container without having to re-download the image. It will download everything again (just in new) and you can continue.
+This image provides a FiveM/txAdmin server. After the first startup, it downloads the defined file from the CFX servers. If there is an update to the server files, simply rebuild the container without having to download the image again. Everything will be downloaded again (only new) and you can continue.
 ## Content🧾
 
-* [Deployment👩‍💻](https://github.com/Auhrus/theisle-evrima-docker-server#deployment)
-* [IMPORTANT‼️](https://github.com/Auhrus/theisle-evrima-docker-server#important%EF%B8%8F)
-* [Environment Variables🔢](https://github.com/Auhrus/theisle-evrima-docker-server#environment-variables)
-* [Update⏫](https://github.com/Auhrus/theisle-evrima-docker-server#update)
-* [Support❤️](https://github.com/Auhrus/theisle-evrima-docker-server#support)
+* [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment)
+* [IMPORTANT‼️](https://github.com/Auhrus/fivem-docker-server#important%EF%B8%8F)
+* [Environment Variables🔢](https://github.com/Auhrus/fivem-docker-server#environment-variables)
+* [Update/Downgrade⏫](https://github.com/Auhrus/fivem-docker-server#update/downgrade)
+* [Support❤️](https://github.com/Auhrus/fivem-docker-server#support)
 
 ## Deployment👩‍💻
 
 How to install this Docker Container
 
-1. Install Docker on your Server. Here you can find a guide [[here]](https://duckduckgo.com/?t=ffab&q=How+to+install+Docker+on+Ubuntu)
+1. Install Docker on your Server. [[Here]](https://duckduckgo.com/?t=ffab&q=How+to+install+Docker+on+Ubuntu) you can find a guide.
 2. Run that command
 ```bash
-docker run --name CONAINER_NAME -p 7777-7778:7777-7778/tcp -p 8888:8888/tcp -p 10000:10000/tcp -p 7777-7778:7777-7778/udp -v VOLUME_NAME:/home/steam/theisle-dedicated/TheIsle/Saved/Config/LinuxServer -v VOLUME_NAME:/home/steam/theisle-dedicated/TheIsle/Saved/PlayerData ghcr.io/auhrus/theisle-evrima-docker-server:latest
+docker run -d -t --name CONAINER_NAME -p 30120:30120/tcp -p 40120:40120/tcp -p 30120:30120/udp -e download=recommended -v VOLUME_NAME:/opt/fivem/txData ghcr.io/auhrus/fivem:latest
 ```
 Please replace all things written in CAPS.
 
-3. After all data has been downloaded, restart the container.
+3. After all data has been downloaded, the server will be started. restart the container.
 ```bash
 docker restart CONAINER_NAME
 ```
@@ -28,9 +28,7 @@ docker restart CONAINER_NAME
 
 
 ## IMPORTANT‼️
--Make sure that the folder of the volumes for the configs and the playerdata have the owner and group 1000:1000.
 
--The server does not create the .ini files itself, they must be created manually on the volume. The "basic-configs" folder contains the minimum configuration requirements for starting the server.
 
 
 ## Environment Variables🔢
@@ -38,26 +36,35 @@ docker restart CONAINER_NAME
 To run this project, you will need to set the following environment variables.
 
 | Variable      | Function      | Default |
-|:------------- |:-------------:|:-------------|
-| `additionalcommands`       |Here you can add (if needed) additional commands to start the server.|--|
+|:-------------:|:-------------:|:-------------|
+| `download`    |With this variable you can determine which version of the FiveM server will be downloaded.|recommended|
+| `download`    |You can ignore this, it will be created automatically by the Alpine base.|/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin|
 
 The server start command:
+```bash
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+	
+exec $SCRIPTPATH/alpine/opt/cfx-server/ld-musl-x86_64.so.1 \
+--library-path "$SCRIPTPATH/alpine/usr/lib/v8/:$SCRIPTPATH/alpine/lib/:$SCRIPTPATH/alpine/usr/lib/" -- \
+$SCRIPTPATH/alpine/opt/cfx-server/FXServer +set citizen_dir $SCRIPTPATH/alpine/opt/cfx-server/citizen/ $*
+```
 
-/home/steam/theisle-dedicated/TheIsleServer.sh $additionalcommands -log
 
+## Up-/Downgrade⏫
 
-
-## Update⏫
-
-How do i update my TheIsle Server to a newer Version?
+How do i change the version of my FiveM Server?
 
 1. First stop and remove the existing Container.
 ```bash
 docker stop CONAINER_NAME && docker rm CONAINER_NAME
 ```
-2. Then create him again like in the [Deployment👩‍💻](https://github.com/Auhrus/theisle-evrima-docker-server#deployment) with the same Volumes.
+2. Then create him again like in the [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment) with the same Volumes.
+
+Please note that downgrading may cause compatibility problems e.g. with the txAdmin database.
+
 
 ## Support❤️
 
 If you find any bugs have improvements for this Documentation or have any other suggestions/improvements, please post a bug report or feature suggestion in the 
-[Issues Tab](https://github.com/Auhrus/theisle-evrima-docker-server/issues).
+[Issues Tab](https://github.com/Auhrus/fivem-docker-server/issues).
