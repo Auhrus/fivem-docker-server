@@ -1,6 +1,6 @@
 # FiveM Docker Server ⚙️ WIP
 
-This image provides a FiveM/txAdmin server. After the first startup, it downloads the defined version from the CFX servers. If there is an update to the server files, simply recreate the container without having to download the image again. Everything will be downloaded again (only new) and you can continue.
+This image provides a FiveM/txAdmin server. After the first startup, it downloads the defined version from the CFX servers. If there is an update to the server files, simply recreate the container without having to redownload the image again. Everything will be downloaded again (only new) and you can continue.
 ## Content🧾
 
 * [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment)
@@ -16,14 +16,18 @@ How to install this Docker Container
 1. Install Docker on your Server. [[Here]](https://duckduckgo.com/?t=ffab&q=How+to+install+Docker+on+Ubuntu) you can find a guide.
 2. Run that command
 ```bash
-docker run -d -t --name CONAINER_NAME -p 30120:30120/tcp -p 40120:40120/tcp -p 30120:30120/udp -e download=VERSION -v VOLUME_NAME:/opt/fivem/txData ghcr.io/auhrus/fivem:latest
+docker run -d -t --name CONAINER_NAME -p 40120:40120/tcp -p 30120:30120/tcp -p 30120:30120/udp -e download=VERSION -v VOLUME_NAME:/opt/fivem/txData ghcr.io/auhrus/fivem:latest
 ```
 Please replace all things written in CAPS.
 
-3. After all data has been downloaded, the server will be get started.
+3. After all data has been downloaded, the Container will be get stopped.
 
-4. Next, the txAdmin server must be set up. This is done via the web interface provided by FiveM.
-[Point2](https://docs.fivem.net/docs/server-manual/setting-up-a-server-txadmin/#start-the-server)
+4. Restart the container and the txAdmin server will start.
+
+5. Now the txAdmin server must be set up. This is done via the web interface provided by FiveM.<br>
+   [[Here]](https://docs.fivem.net/docs/server-manual/setting-up-a-server-txadmin/#start-the-server) you can read from point 2 on, how to set up txAdmin. (The PIN can be found in the server console)
+
+6. After that the FiveM server will be started and you can play.
 
 ## IMPORTANT‼️
 
@@ -31,22 +35,25 @@ Please replace all things written in CAPS.
 
 ## Environment Variables🔢
 
-To run this project, you will need to set the following environment variables.
+To run this container, you will need to set the following environment variables.
 
 | Variable      | Function      | Default |
 |:-------------:|:-------------:|:-------------|
 | `download`    |With this variable you can determine which version of the FiveM server will be downloaded.<br>Below you will find a more detailed description of this variable.|recommended|
 | `PATH`    |You can ignore this, it will be created automatically by the Alpine base.|/usr/local/sbin:/usr/local/bin:<br>/usr/sbin:/usr/bin:/sbin:/bin|
 
-Detailed description of the download variable:
-
+<details>
+<summary>Detailed description of the download variable</summary>
+<br>
 Detailed description
-<br>![alt text for screen readers](https://docs.fivem.net/server-setup/windows-step-2.png "Text to show on mouseover")<br>
-temp
 
+![alt text for screen readers](https://docs.fivem.net/server-setup/windows-step-2.png "Text to show on mouseover")
+<br>
+temp
+</details>
 
 <br>
-Server start script:
+How the server get started:
 
 ```bash
 SCRIPT=$(readlink -f "$0")
