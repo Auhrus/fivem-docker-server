@@ -4,6 +4,8 @@ MAINTAINER "https://github.com/Auhrus"
 
 LABEL org.opencontainers.image.source https://github.com/Auhrus/fivem-docker-server
 
+ENV download="recommended"
+
 EXPOSE 40120
 EXPOSE 30120
 EXPOSE 30110
