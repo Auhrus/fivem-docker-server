@@ -4,10 +4,10 @@ This image provides a FiveM/txAdmin server. After the first startup, it download
 ## Content🧾
 
 * [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment)
-* [IMPORTANT‼️](https://github.com/Auhrus/fivem-docker-server#important%EF%B8%8F)
 * [Environment Variables🔢](https://github.com/Auhrus/fivem-docker-server#environment-variables)
 * [Update/Downgrade⏫](https://github.com/Auhrus/fivem-docker-server#up-downgrade)
 * [Support❤️](https://github.com/Auhrus/fivem-docker-server#support)
+
 
 ## Deployment👩‍💻
 
@@ -29,9 +29,6 @@ Please replace all things written in CAPS.
 
 6. After that the FiveM server will be started and you can play.
 
-## IMPORTANT‼️
-
-
 
 ## Environment Variables🔢
 
@@ -42,17 +39,21 @@ To run this container, you will need to set the following environment variables.
 | `download`    |With this variable you can determine which version of the FiveM server will be downloaded.<br>Below you will find a more detailed description of this variable.|recommended|
 | `PATH`    |You can ignore this, it will be created automatically by the Alpine base.|/usr/local/sbin:/usr/local/bin:<br>/usr/sbin:/usr/bin:/sbin:/bin|
 
-<details>
-<summary>Detailed description of the download variable</summary>
-<br>
-Detailed description
 
-![alt text for screen readers](https://docs.fivem.net/server-setup/windows-step-2.png "Text to show on mouseover")
-<br>
-temp
-</details>
+#### Detailed description of the `download` variable
+There are 3 ways to use the variable.<br>
+1. Set it to Recommended<br>
+	In that case, the version that can be downloaded at the time of container creation via the Recommended button. Seen in the picture below.<br>
+2. Set it to optional<br>
+	In that case, the version that can be downloaded at the time of container creation via the Optional button. Seen in the picture below.<br>
+3. Insert a link of the desired version<br>
+   	If you need a specific version of the server, you can also insert the direct link to the desired version file. The link will look like this e.g.<br>
+    	`https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/6622-d24291cd0e6119311f5b410be6167f6ccdc3e62d/fx.tar.xz`<br>
+	All versions can be found [->HERE](https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/)<br>
+ 
+![image](https://github.com/Auhrus/fivem-docker-server/assets/57270834/8752e275-54ca-4ba7-a141-473bc0be4d70 "CFX artifacts")
 
-<br>
+<br><br>
 How the server get started:
 
 ```bash
