@@ -1,4 +1,4 @@
-# FiveM Docker Server ⚙️ WIP
+# FiveM Docker Server 🦺
 
 This image provides a FiveM/txAdmin server. After the first startup, it downloads the defined version from the CFX servers. If there is an update to the server files, simply recreate the container without having to redownload the image again. Everything will be downloaded again (only new) and you can continue.
 ## Content🧾
@@ -42,12 +42,15 @@ To run this container, you will need to set the following environment variables.
 
 #### Detailed description of the `download` variable
 There are 3 ways to use the variable.<br>
-1. Set it to Recommended<br>
-	In that case, the version that can be downloaded at the time of container creation via the Recommended button. Seen in the picture below.<br>
-2. Set it to optional<br>
-	In that case, the version that can be downloaded at the time of container creation via the Optional button. Seen in the picture below.<br>
-3. Insert a link of the desired version<br>
+1. Set it to 'recommended'<br>
+	In that case, the version that can be downloaded at the time of container creation via the "Latest Recommended" button. Seen in the picture below.<br>
+ 
+2. Set it to 'optional'<br>
+	In that case, the version that can be downloaded at the time of container creation via the "Latest Optional" button. Seen in the picture below.<br>
+ 
+3. or insert a link of the desired version<br>
    	If you need a specific version of the server, you can also insert the direct link to the desired version file. The link will look like this e.g.<br>
+    
 ```html
 https://runtime.fivem.net/artifacts/fivem/build_proot_linux/master/6622-d24291cd0e6119311f5b410be6167f6ccdc3e62d/fx.tar.xz
 ```
