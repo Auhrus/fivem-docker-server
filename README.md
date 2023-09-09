@@ -81,7 +81,7 @@ docker stop CONAINER_NAME && docker rm CONAINER_NAME
 ```
 2. Then create him again like in the [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment) with the same Volumes.
 
-Please note that downgrading may cause compatibility problems e.g. with the txAdmin database.
+**Please note** that downgrading may cause compatibility problems e.g. with the txAdmin database.
 
 
 ## Support❤️
