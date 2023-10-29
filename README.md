@@ -3,10 +3,10 @@
 This image provides a FiveM/txAdmin server. After the first startup, it downloads the defined version from the CFX servers. If there is an update to the server files, simply recreate the container without having to redownload the image again. Everything will be downloaded again (only new) and you can continue.
 ## Content🧾
 
-* [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment)
-* [Environment Variables🔢](https://github.com/Auhrus/fivem-docker-server#environment-variables)
-* [Update/Downgrade⏫](https://github.com/Auhrus/fivem-docker-server#up-downgrade)
-* [Support❤️](https://github.com/Auhrus/fivem-docker-server#support)
+* [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server?tab=readme-ov-file#deployment)
+* [Environment Variables🔢](https://github.com/Auhrus/fivem-docker-server?tab=readme-ov-file#environment-variables)
+* [Update/Downgrade⏫](https://github.com/Auhrus/fivem-docker-server?tab=readme-ov-file#up-downgrade)
+* [Support❤️](https://github.com/Auhrus/fivem-docker-server?tab=readme-ov-file#support%EF%B8%8F)
 
 
 ## Deployment👩‍💻
