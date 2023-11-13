@@ -18,16 +18,15 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
 			echo "**Installing from" $download
 			wget -O- $download | tar -xJ -C /opt/fivem
 		;;
-  esac
-	rm index.html
+  	esac
+  rm index.html
   touch $CONTAINER_ALREADY_STARTED
-else
-  echo "***Starting FiveM Server"
-	SCRIPT=$(readlink -f "$0")
-	SCRIPTPATH=$(dirname "$SCRIPT")
-	
-	exec $SCRIPTPATH/alpine/opt/cfx-server/ld-musl-x86_64.so.1 \
-  --library-path "$SCRIPTPATH/alpine/usr/lib/v8/:$SCRIPTPATH/alpine/lib/:$SCRIPTPATH/alpine/usr/lib/" -- \
-  $SCRIPTPATH/alpine/opt/cfx-server/FXServer +set citizen_dir $SCRIPTPATH/alpine/opt/cfx-server/citizen/ $*
-  fi
+fi
+echo "***Starting FiveM Server"
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+
+exec $SCRIPTPATH/alpine/opt/cfx-server/ld-musl-x86_64.so.1 \
+--library-path "$SCRIPTPATH/alpine/usr/lib/v8/:$SCRIPTPATH/alpine/lib/:$SCRIPTPATH/alpine/usr/lib/" -- \
+$SCRIPTPATH/alpine/opt/cfx-server/FXServer +set citizen_dir $SCRIPTPATH/alpine/opt/cfx-server/citizen/ $*
 exit
