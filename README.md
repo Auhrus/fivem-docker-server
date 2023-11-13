@@ -20,14 +20,12 @@ docker run -d -t --name CONAINER_NAME -p 40120:40120/tcp -p 30120:30120/tcp -p 3
 ```
 Please replace all things written in CAPS.
 
-3. After all data has been downloaded, the Container will be get stopped.
+3. After all data has been downloaded, the txAdmin server will start.
 
-4. Restart the container and the txAdmin server will start.
-
-5. Now the txAdmin server must be set up. This is done via the web interface provided by FiveM.<br>
+4. Now the txAdmin server must be set up. This is done via the web interface provided by FiveM.<br>
    [[Here]](https://docs.fivem.net/docs/server-manual/setting-up-a-server-txadmin/#start-the-server) you can read from point 2 on, how to set up txAdmin. (The PIN can be found in the server console)
 
-6. After that the FiveM server will be started and you can play.
+5. After that the FiveM server will be started and you can play.
 
 
 ## Environment Variables🔢
@@ -76,10 +74,10 @@ $SCRIPTPATH/alpine/opt/cfx-server/FXServer +set citizen_dir $SCRIPTPATH/alpine/o
 How do i change the version of my FiveM Server?
 
 1. First stop and remove the existing Container.
-```bash
+```shell
 docker stop CONAINER_NAME && docker rm CONAINER_NAME
 ```
-2. Then create him again like in the [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server#deployment) with the same Volumes.
+2. Then create him again like in the [Deployment👩‍💻](https://github.com/Auhrus/fivem-docker-server?tab=readme-ov-file#deployment) with the same Volumes.
 
 **Please note** that downgrading may cause compatibility problems e.g. with the txAdmin database.
 
