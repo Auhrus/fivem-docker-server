@@ -1,7 +1,6 @@
 FROM alpine:latest
 
-MAINTAINER "https://github.com/Auhrus"
-
+LABEL maintainer="https://github.com/Auhrus"
 LABEL org.opencontainers.image.source https://github.com/Auhrus/fivem-docker-server
 
 ENV download="recommended"
