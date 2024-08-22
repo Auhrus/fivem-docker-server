@@ -36,6 +36,7 @@ To run this container, you will need to set the following environment variables.
 |:-------------:|:-------------:|:-------------|
 | `download`    |With this variable you can determine which version of the FiveM server will be downloaded.<br>Below you will find a more detailed description of this variable.|recommended|
 | `PATH`    |You can ignore this, it will be created automatically by the Alpine base.|/usr/local/sbin:/usr/local/bin:<br>/usr/sbin:/usr/bin:/sbin:/bin|
+| `TZ`    |This can be used to set the time zone within the container. Enter a [TZ identifier](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) for this. When unset its UTC time.|--|
 
 
 #### Detailed description of the `download` variable

@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 LABEL maintainer="https://github.com/Auhrus"
-LABEL org.opencontainers.image.source https://github.com/Auhrus/fivem-docker-server
+LABEL org.opencontainers.image.source="https://github.com/Auhrus/fivem-docker-server"
 
 ENV download="recommended"
 
@@ -11,7 +11,7 @@ EXPOSE 30110
 
 COPY ./startup.sh /opt/fivem/startup.sh
 
-RUN apk add --no-cache libgcc libstdc++ ca-certificates npm
+RUN apk add --no-cache libgcc libstdc++ ca-certificates npm tzdata
 RUN npm install -g fvm-installer
 
 WORKDIR /opt/fivem
