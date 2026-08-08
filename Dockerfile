@@ -3,17 +3,23 @@ FROM alpine:latest
 LABEL maintainer="https://github.com/Auhrus"
 LABEL org.opencontainers.image.source="https://github.com/Auhrus/fivem-docker-server"
 
-ENV download="recommended"
+ENV gtaversion="legacy"
+ENV legacydownload="recommended"
 
-EXPOSE 40120
-EXPOSE 30120
-EXPOSE 30110
+EXPOSE 30120/tcp
+EXPOSE 30120/udp
+EXPOSE 40120/tcp
 
-COPY ./startup.sh /opt/fivem/startup.sh
+RUN apk add --no-cache curl libgcc libstdc++ tzdata
 
-RUN apk add --no-cache libgcc libstdc++ ca-certificates npm tzdata
-RUN npm install -g fvm-installer
+RUN addgroup -g 1001 -S fivem && \
+    adduser  -u 1001 -S -G fivem -H -s /sbin/nologin fivem
 
-WORKDIR /opt/fivem
+RUN chown 1001:1001 /opt
 
-ENTRYPOINT ["sh", "/opt/fivem/startup.sh"]
+COPY ./startup.sh /opt/startup.sh
+
+WORKDIR /opt
+USER fivem
+
+ENTRYPOINT ["sh", "/opt/startup.sh"]
